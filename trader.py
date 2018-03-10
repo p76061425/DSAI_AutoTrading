@@ -17,7 +17,7 @@ class Cross:
         self.five_avg = 0
         self.twenty_avg = 0
         
-    def predict(self,row):
+    def predict(self,row,testing_data_num):
         
         self.day += 1
         
@@ -69,10 +69,11 @@ class Cross:
             elif(self.stock_num_test<-1):
                 self.stock_num_test = -1
                 self.action = 0
-
-            output_file.write(str(self.action)+'\n')
+            if(self.day != testing_data_num):
+                output_file.write(str(self.action)+'\n')
+                
         # Show result
-        print(self.day, "act:",self.action,"stock:", self.stock_num, "money:",self.my_money,"五日:",self.five_avg,"二十日:",self.twenty_avg,"開盤價:",row[0])
+        print(self.day, "act:",self.action,"stock:", self.stock_num, "money:",self.my_money,"五日:",self.five_avg,"二十日:",self.twenty_avg,"開盤價:",row[0])    
         
 
 if __name__ == '__main__':
@@ -102,9 +103,10 @@ if __name__ == '__main__':
 #    trader.train(training_data)
     cross = Cross ()
     testing_data = load_data(args.testing)
+    testing_data_num = testing_data.shape[0]
     with open(args.output, 'w') as output_file:
         for row in testing_data.values:
-            cross.predict(row)
+            cross.predict(row,testing_data_num)
             
             # this is your option, you can leave it empty.
             #trader.re_training()
@@ -115,4 +117,4 @@ if __name__ == '__main__':
     elif(cross.stock_num==-1):
         cross.my_money = cross.my_money-372.8301
 
-    print("end_money:",cross.my_money)
+    print("end_money:",cross.my_money)  
