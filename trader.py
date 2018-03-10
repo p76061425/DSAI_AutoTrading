@@ -1,5 +1,9 @@
 import pandas as pd
 
+def load_data(str):
+    df = pd.read_csv(str, names=["open", "high", "low", "close"])
+    return df
+
 class Cross:
     def __init__(self):
 
@@ -67,14 +71,9 @@ class Cross:
                 self.action = 0
 
             output_file.write(str(self.action)+'\n')
-        print(self.day, self.action, self.stock_num, self.my_money,"五日:",self.five_avg,"二十日:",self.twenty_avg,"開盤價:",row[0])    
-
+        # Show result
+        print(self.day, "act:",self.action,"stock:", self.stock_num, "money:",self.my_money,"五日:",self.five_avg,"二十日:",self.twenty_avg,"開盤價:",row[0])
         
-def load_data(str):
-    df = pd.read_csv(str, names=["open", "high", "low", "close"])
-    return df
-    
-# You can write code above the if-main block.
 
 if __name__ == '__main__':
     # You should not modify this part.
@@ -104,17 +103,16 @@ if __name__ == '__main__':
     cross = Cross ()
     testing_data = load_data(args.testing)
     with open(args.output, 'w') as output_file:
-
         for row in testing_data.values:
             cross.predict(row)
-        
+            
+            # this is your option, you can leave it empty.
+            #trader.re_training()
+            
     if(cross.stock_num==1):
         cross.my_money = cross.my_money+372.8301
         
     elif(cross.stock_num==-1):
         cross.my_money = cross.my_money-372.8301
 
-    print("end_money:",cross.my_money)       
-            
-            # this is your option, you can leave it empty.
-            #trader.re_training()
+    print("end_money:",cross.my_money)
