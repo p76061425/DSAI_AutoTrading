@@ -73,7 +73,7 @@ class Cross:
                 output_file.write(str(self.action)+'\n')
                 
         # Show result
-        print(self.day, "act:",self.action,"stock:", self.stock_num, "money:",self.my_money,"五日:",self.five_avg,"二十日:",self.twenty_avg,"開盤價:",row[0])    
+        # print(self.day, "act:",self.action,"stock:", self.stock_num, "money:",self.my_money,"五日:",self.five_avg,"二十日:",self.twenty_avg,"開盤價:",row[0])    
         
 
 if __name__ == '__main__':
@@ -111,10 +111,10 @@ if __name__ == '__main__':
             # this is your option, you can leave it empty.
             #trader.re_training()
             
-    if(cross.stock_num==1):
-        cross.my_money = cross.my_money+372.8301
+    # if(cross.stock_num==1):
+        # cross.my_money = cross.my_money+372.8301
         
-    elif(cross.stock_num==-1):
-        cross.my_money = cross.my_money-372.8301
+    # elif(cross.stock_num==-1):
+        # cross.my_money = cross.my_money-372.8301
 
-    print("end_money:",cross.my_money)  
+    # print("end_money:",cross.my_money)  
